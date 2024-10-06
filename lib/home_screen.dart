@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nut_flutter_showcase/random_quote_screen.dart';
+
+import 'random_quote_screen.dart';
+import 'hobbies_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -133,6 +135,10 @@ class HomeScreen extends StatelessWidget {
       case 'Random Quote':
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const RandomQuoteScreen()));
+        break;
+      case 'Hobbies':
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const HobbiesScreen()));
         break;
     }
   }

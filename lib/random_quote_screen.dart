@@ -40,20 +40,24 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
                 children: [
                   _buildQuoteCard(),
                   const SizedBox(height: 100),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        quote = '';
-                        author = '';
-                      });
-
-                      _fetchRandomQuote();
-                    },
-                    child: const Icon(Icons.navigate_next),
-                  ),
+                  _buildGenerateButton(),
                 ],
               ),
       ),
+    );
+  }
+
+  Widget _buildGenerateButton() {
+    return ElevatedButton(
+      onPressed: () {
+        setState(() {
+          quote = '';
+          author = '';
+        });
+
+        _fetchRandomQuote();
+      },
+      child: const Icon(Icons.navigate_next),
     );
   }
 
