@@ -17,7 +17,7 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
   void initState() {
     super.initState();
 
-    fetchRandomQuote();
+    _fetchRandomQuote();
   }
 
   @override
@@ -47,7 +47,7 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
                         author = '';
                       });
 
-                      fetchRandomQuote();
+                      _fetchRandomQuote();
                     },
                     child: const Icon(Icons.navigate_next),
                   ),
@@ -80,7 +80,7 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
     );
   }
 
-  Future<void> fetchRandomQuote() async {
+  Future<void> _fetchRandomQuote() async {
     var response = await http.get(
       Uri.parse('https://quotes15.p.rapidapi.com/quotes/random/'),
       headers: {
