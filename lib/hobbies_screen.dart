@@ -11,203 +11,152 @@ class HobbiesScreen extends StatefulWidget {
 }
 
 class _HobbiesScreenState extends State<HobbiesScreen> {
-  int selectedValue = -1;
-  String hobby = 'a';
-  String link = 'a';
-  String category = 'a';
+  bool _isFetchingData = false;
+  List<HobbyCategory> _categories = [];
+  HobbyCategory? _selectedCategory;
+  Hobby? _hobby;
 
   @override
   void initState() {
     super.initState();
+
+    _categories = [
+      HobbyCategory(title: 'General', value: 'general'),
+      HobbyCategory(title: 'Sports and Outdoors', value: 'sports_and_outdoors'),
+      HobbyCategory(title: 'Education', value: 'education'),
+      HobbyCategory(title: 'Collection', value: 'collection'),
+      HobbyCategory(title: 'Competition', value: 'competition'),
+      HobbyCategory(title: 'Observation', value: 'observation'),
+    ];
+    _selectedCategory = _categories.first;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Hobbies')),
-      body: _buildBody(),
+      body: Stack(
+        children: [
+          _buildBody(),
+          if (_isFetchingData) _buildLoadingBarrier(),
+        ],
+      ),
     );
   }
 
   Widget _buildBody() {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: hobby.isEmpty || link.isEmpty
-            ? const CircularProgressIndicator()
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _buildRadios(),
-                  const SizedBox(height: 100),
-                  _buildHobbyCard(),
-                ],
-              ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        if (_hobby != null) _buildHobbyCard(),
+        if (_hobby != null) const Divider(),
+        _buildRadios(),
+        _buildSubmitButton(),
+      ],
     );
   }
 
   Widget _buildHobbyCard() {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            hobby,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 24.0),
-          ),
-          const SizedBox(height: 20),
-          Text('Link: $link'),
-          const SizedBox(height: 20),
-          Text('Category: $category'),
-        ],
-      ),
+    return Column(
+      children: [
+        Text(
+          _hobby?.hobby ?? '',
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 24.0),
+        ),
+        const SizedBox(height: 20),
+        Text('Link: ${_hobby?.link}'),
+        const SizedBox(height: 20),
+        Text('Category: ${_hobby?.category}'),
+      ],
     );
   }
 
   Widget _buildRadios() {
-    return SizedBox(
-      width: 300,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ListTile(
-            title: const Text('General'),
-            leading: Radio(
-              value: 0,
-              groupValue: selectedValue,
-              onChanged: (int? value) {
-                setState(() {
-                  selectedValue = value!;
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: const Text('Sports and Outdoors'),
-            leading: Radio(
-              value: 1,
-              groupValue: selectedValue,
-              onChanged: (int? value) {
-                setState(() {
-                  selectedValue = value!;
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: const Text('Education'),
-            leading: Radio(
-              value: 2,
-              groupValue: selectedValue,
-              onChanged: (int? value) {
-                setState(() {
-                  selectedValue = value!;
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: const Text('Collection'),
-            leading: Radio(
-              value: 3,
-              groupValue: selectedValue,
-              onChanged: (int? value) {
-                setState(() {
-                  selectedValue = value!;
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: const Text('Competition'),
-            leading: Radio(
-              value: 4,
-              groupValue: selectedValue,
-              onChanged: (int? value) {
-                setState(() {
-                  selectedValue = value!;
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: const Text('Observation'),
-            leading: Radio(
-              value: 5,
-              groupValue: selectedValue,
-              onChanged: (int? value) {
-                setState(() {
-                  selectedValue = value!;
-                });
-              },
-            ),
-          ),
-          const SizedBox(height: 20),
-          _buildGenerateButton(),
-        ],
-      ),
+    return Column(
+      children: _buildRadioWidgets(),
     );
   }
 
-  Widget _buildGenerateButton() {
+  List<Widget> _buildRadioWidgets() {
+    List<Widget> widgets = [];
+
+    for (var category in _categories) {
+      var widget = RadioListTile(
+        title: Text(category.title),
+        value: category,
+        groupValue: _selectedCategory,
+        onChanged: (value) {
+          setState(() {
+            _selectedCategory = value;
+          });
+        },
+      );
+
+      widgets.add(widget);
+    }
+
+    return widgets;
+  }
+
+  Widget _buildSubmitButton() {
     return ElevatedButton(
       onPressed: () {
-        setState(() {
-          hobby = '';
-          link = '';
-        });
-
         _fetchHobby();
       },
-      child: const Text('Generate'),
+      child: const Text('Submit'),
+    );
+  }
+
+  Widget _buildLoadingBarrier() {
+    return const Stack(
+      children: [
+        Opacity(
+          opacity: 0.5,
+          child: ModalBarrier(dismissible: false, color: Colors.black),
+        ),
+        Center(child: CircularProgressIndicator()),
+      ],
     );
   }
 
   Future<void> _fetchHobby() async {
-    print('value: $selectedValue');
-
-    var selectedCategory = 'general';
-
-    switch (selectedValue) {
-      case 0:
-        selectedCategory = 'general';
-        break;
-      case 1:
-        selectedCategory = 'sports_and_outdoors';
-        break;
-      case 2:
-        selectedCategory = 'education';
-        break;
-      case 3:
-        selectedCategory = 'collection';
-        break;
-      case 4:
-        selectedCategory = 'competition';
-        break;
-      case 5:
-        selectedCategory = 'observation';
-        break;
-    }
+    setState(() {
+      _isFetchingData = true;
+    });
 
     var response = await http.get(
       Uri.parse(
-          'https://hobbies-by-api-ninjas.p.rapidapi.com/v1/hobbies?category=$selectedCategory'),
+          'https://hobbies-by-api-ninjas.p.rapidapi.com/v1/hobbies?category=${_selectedCategory!.value}'),
       headers: {
         'X-RapidAPI-Key': 'd6c331a93dmsh50acb261fb544bbp104233jsnf173aa315856',
       },
     );
 
+    Map valueMap = json.decode(response.body);
+    var hobby = valueMap['hobby'];
+    var link = valueMap['link'];
+    var category = valueMap['category'];
+
     setState(() {
-      Map valueMap = json.decode(response.body);
-      hobby = valueMap['hobby'];
-      link = valueMap['link'];
-      category = valueMap['category'];
+      _hobby = Hobby(hobby: hobby, link: link, category: category);
+      _isFetchingData = false;
     });
   }
+}
+
+class HobbyCategory {
+  String title;
+  String value;
+
+  HobbyCategory({required this.title, required this.value});
+}
+
+class Hobby {
+  String hobby;
+  String link;
+  String category;
+
+  Hobby({required this.hobby, required this.link, required this.category});
 }

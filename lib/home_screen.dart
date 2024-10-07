@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           centerTitle: true,
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.blue,
           bottom: const TabBar(
             isScrollable: true,
             tabAlignment: TabAlignment.startOffset,
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildFunWithApiContent(BuildContext context) {
     return Container(
-      color: Colors.black12,
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
         child: ListView(
@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildWebglContent(BuildContext context) {
     return Container(
-      color: Colors.black12,
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
         child: ListView(
