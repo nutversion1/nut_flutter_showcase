@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
+import 'package:text_link/text_link.dart';
 import 'dart:convert';
 
 import 'hobby_category.dart';
@@ -69,7 +69,7 @@ class _HobbiesScreenState extends State<HobbiesScreen> {
           style: const TextStyle(fontSize: 24.0),
         ),
         const SizedBox(height: 20),
-        Text('Link: ${_hobby?.link}'),
+        LinkText(text: 'Link: ${_hobby?.link}'),
         const SizedBox(height: 20),
         Text('Category: ${_hobby?.category}'),
       ],
