@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'random_quote_screen.dart';
-import 'hobbies_screen.dart';
+import 'fun_with_api/random_quote/random_quote_screen.dart';
+import 'fun_with_api/hobbies/hobbies_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

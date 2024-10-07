@@ -3,6 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
 
+import 'hobby_category.dart';
+import 'hobby.dart';
+
 class HobbiesScreen extends StatefulWidget {
   const HobbiesScreen({super.key});
 
@@ -144,19 +147,4 @@ class _HobbiesScreenState extends State<HobbiesScreen> {
       _isFetchingData = false;
     });
   }
-}
-
-class HobbyCategory {
-  String title;
-  String value;
-
-  HobbyCategory({required this.title, required this.value});
-}
-
-class Hobby {
-  String hobby;
-  String link;
-  String category;
-
-  Hobby({required this.hobby, required this.link, required this.category});
 }
