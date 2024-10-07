@@ -88,11 +88,14 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
       _isFetchingData = true;
     });
 
+    var url = 'https://quotes15.p.rapidapi.com/quotes/random/';
+    var headers = {
+      'X-RapidAPI-Key': 'd6c331a93dmsh50acb261fb544bbp104233jsnf173aa315856',
+    };
+
     var response = await http.get(
-      Uri.parse('https://quotes15.p.rapidapi.com/quotes/random/'),
-      headers: {
-        'X-RapidAPI-Key': 'd6c331a93dmsh50acb261fb544bbp104233jsnf173aa315856',
-      },
+      Uri.parse(url),
+      headers: headers,
     );
 
     Map valueMap = json.decode(response.body);
