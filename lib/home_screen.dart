@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'fun_with_api/random_quote/random_quote_screen.dart';
 import 'fun_with_api/hobbies/hobbies_screen.dart';
+import 'fun_with_api/numbers/numbers_screen.dart';
 import 'fun_with_api/translate/translate_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -144,6 +145,10 @@ class HomeScreen extends StatelessWidget {
       case 'Hobbies':
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const HobbiesScreen()));
+        break;
+      case 'Numbers':
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const NumbersScreen()));
         break;
       case 'Translate':
         Navigator.of(context).push(
