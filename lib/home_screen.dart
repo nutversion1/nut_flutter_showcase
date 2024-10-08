@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'fun_with_api/programming_memes/programming_memes_screen.dart';
 import 'fun_with_api/random_quote/random_quote_screen.dart';
 import 'fun_with_api/hobbies/hobbies_screen.dart';
 import 'fun_with_api/numbers/numbers_screen.dart';
@@ -66,6 +67,10 @@ class HomeScreen extends StatelessWidget {
                 _buildMenuButton(
                   context,
                   buttonName: 'Translate',
+                ),
+                _buildMenuButton(
+                  context,
+                  buttonName: 'Programming Memes',
                 ),
               ],
             ),
@@ -153,6 +158,10 @@ class HomeScreen extends StatelessWidget {
       case 'Translate':
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const TranslateScreen()));
+        break;
+      case 'Programming Memes':
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const ProgrammingMemesScreen()));
         break;
     }
   }
