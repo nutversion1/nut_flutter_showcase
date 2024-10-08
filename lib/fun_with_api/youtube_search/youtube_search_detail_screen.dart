@@ -30,7 +30,7 @@ class YoutubeSearchDetailScreen extends StatelessWidget {
           SizedBox(
             width: 200,
             height: 200,
-            child: VideoPlayerWidget(videoId: 'JTMVOzPPtiw'),
+            child: VideoPlayerWidget(videoId: youtubeSearch.id),
           ),
         ],
       ),

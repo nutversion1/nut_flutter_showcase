@@ -1,4 +1,5 @@
 class YoutubeSearch {
+  String id;
   String title;
   String link;
   String thumbnail;
@@ -8,6 +9,7 @@ class YoutubeSearch {
   String durationString;
 
   YoutubeSearch({
+    required this.id,
     required this.title,
     required this.link,
     required this.thumbnail,

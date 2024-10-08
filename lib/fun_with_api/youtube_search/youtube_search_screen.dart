@@ -94,6 +94,7 @@ class _YoutubeSearchScreenState extends State<YoutubeSearchScreen> {
     youtubeSearches.clear();
 
     for (var valueMap in valueMaps) {
+      var id = valueMap['id'];
       var title = valueMap['title'];
       var link = valueMap['link'];
       var thumbnail = valueMap['thumbnail'];
@@ -103,6 +104,7 @@ class _YoutubeSearchScreenState extends State<YoutubeSearchScreen> {
       var durationString = valueMap['durationString'];
 
       var youtubeSearch = YoutubeSearch(
+        id: id,
         title: title,
         link: link,
         thumbnail: thumbnail,
