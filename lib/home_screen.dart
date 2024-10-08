@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nut_flutter_showcase/fun_with_api/youtube_search/youtube_search_screen.dart';
 
 import 'fun_with_api/programming_memes/programming_memes_screen.dart';
 import 'fun_with_api/random_quote/random_quote_screen.dart';
@@ -71,6 +72,10 @@ class HomeScreen extends StatelessWidget {
                 _buildMenuButton(
                   context,
                   buttonName: 'Programming Memes',
+                ),
+                _buildMenuButton(
+                  context,
+                  buttonName: 'Youtube Search',
                 ),
               ],
             ),
@@ -162,6 +167,10 @@ class HomeScreen extends StatelessWidget {
       case 'Programming Memes':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const ProgrammingMemesScreen()));
+        break;
+      case 'Youtube Search':
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const YoutubeSearchScreen()));
         break;
     }
   }

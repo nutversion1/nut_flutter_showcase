@@ -136,8 +136,6 @@ class _NumbersScreenState extends State<NumbersScreen> {
       headers: headers,
     );
 
-    print(response.body);
-
     Map valueMap = json.decode(response.body);
     var text = valueMap['text'];
     var year = valueMap['year'];

@@ -13,7 +13,7 @@ class ProgrammingMemesScreen extends StatefulWidget {
 
 class _ProgrammingMemesScreenState extends State<ProgrammingMemesScreen> {
   bool _isFetchingData = false;
-  final List<Meme> _memes = [];
+  List<Meme> _memes = [];
 
   @override
   void initState() {
@@ -114,6 +114,8 @@ class _ProgrammingMemesScreenState extends State<ProgrammingMemesScreen> {
     );
 
     List valueMaps = json.decode(response.body);
+
+    _memes.clear();
 
     for (var valueMap in valueMaps) {
       var image = valueMap['image'];
