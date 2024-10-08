@@ -3,31 +3,10 @@ import 'package:nut_flutter_showcase/fun_with_api/youtube_search/youtube_search.
 import 'package:text_link/text_link.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class YoutubeSearchDetailScreen extends StatefulWidget {
+class YoutubeSearchDetailScreen extends StatelessWidget {
   final YoutubeSearch youtubeSearch;
 
   const YoutubeSearchDetailScreen({super.key, required this.youtubeSearch});
-
-  @override
-  State<YoutubeSearchDetailScreen> createState() =>
-      _YoutubeSearchDetailScreenState();
-}
-
-class _YoutubeSearchDetailScreenState extends State<YoutubeSearchDetailScreen> {
-  late YoutubePlayerController controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller = YoutubePlayerController(
-      initialVideoId: 'JTMVOzPPtiw',
-      flags: const YoutubePlayerFlags(
-        autoPlay: true,
-        mute: true,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,34 +21,31 @@ class _YoutubeSearchDetailScreenState extends State<YoutubeSearchDetailScreen> {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          Text(widget.youtubeSearch.title),
+          Text(youtubeSearch.title),
           const SizedBox(height: 20),
-          Text('Description: ${widget.youtubeSearch.description}'),
+          Text('Description: ${youtubeSearch.description}'),
           const SizedBox(height: 20),
-          LinkText(text: widget.youtubeSearch.link),
+          LinkText(text: youtubeSearch.link),
           const SizedBox(height: 20),
           SizedBox(
-            width: 300,
-            height: 300,
-            child: _buildYoutubePlayer(widget.youtubeSearch),
+            width: 200,
+            height: 200,
+            child: VideoPlayerWidget(videoId: 'JTMVOzPPtiw'),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildYoutubePlayer(YoutubeSearch youtubeSearch) {
+class VideoPlayerWidget extends StatelessWidget {
+  const VideoPlayerWidget({super.key, required this.videoId});
+  final String videoId;
+
+  @override
+  Widget build(BuildContext context) {
     return YoutubePlayer(
-      controller: controller,
-      showVideoProgressIndicator: true,
-      progressIndicatorColor: Colors.amber,
-      progressColors: const ProgressBarColors(
-        playedColor: Colors.amber,
-        handleColor: Colors.amberAccent,
-      ),
-      onReady: () {
-        controller.addListener(() {});
-      },
+      controller: YoutubePlayerController(initialVideoId: videoId),
     );
   }
 }
