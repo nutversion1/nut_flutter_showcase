@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:nut_flutter_showcase/fun_with_api/youtube_search/youtube_search_detail_screen.dart';
 import 'dart:convert';
 
 import '../../widgets/search_widget.dart';
 import '../../widgets/youtube_search_widget.dart';
+import '../programming_memes/programming_memes_screen.dart';
 import 'youtube_search.dart';
 
 class YoutubeSearchScreen extends StatefulWidget {
@@ -40,11 +42,11 @@ class _YoutubeSearchScreenState extends State<YoutubeSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Youtube Search')),
-      body: _buildBody(),
+      body: _buildBody(context),
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
     return Column(
       children: [
         AbsorbPointer(
@@ -56,7 +58,15 @@ class _YoutubeSearchScreenState extends State<YoutubeSearchScreen> {
         Expanded(
           child: isFetchingData
               ? const Center(child: CircularProgressIndicator())
-              : YoutubeSearchWidget(youtubeSearches: youtubeSearches),
+              : YoutubeSearchWidget(
+                  youtubeSearches: youtubeSearches,
+                  onTap: (youtubeSearch) {
+                    return Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => YoutubeSearchDetailScreen(
+                              youtubeSearch: youtubeSearch,
+                            )));
+                  },
+                ),
         ),
       ],
     );
