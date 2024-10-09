@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:nut_flutter_showcase/fun_with_api/youtube_search/youtube_search_detail_screen.dart';
+import 'package:nut_flutter_showcase/widgets/search_widget.dart';
+import 'package:nut_flutter_showcase/widgets/youtube_search_widget.dart';
 import 'dart:convert';
 
-import '../../widgets/search_widget.dart';
-import '../../widgets/youtube_search_widget.dart';
-import '../programming_memes/programming_memes_screen.dart';
 import 'youtube_search.dart';
+import 'youtube_search_detail_screen.dart';
 
 class YoutubeSearchScreen extends StatefulWidget {
   const YoutubeSearchScreen({super.key});

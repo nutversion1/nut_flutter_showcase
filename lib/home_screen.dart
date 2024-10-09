@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nut_flutter_showcase/fun_with_api/youtube_search/youtube_search_screen.dart';
 
-import 'fun_with_api/programming_memes/programming_memes_screen.dart';
-import 'fun_with_api/random_quote/random_quote_screen.dart';
-import 'fun_with_api/hobbies/hobbies_screen.dart';
-import 'fun_with_api/numbers/numbers_screen.dart';
-import 'fun_with_api/translate/translate_screen.dart';
+import 'showcase/fun_with_api/hobbies/hobbies_screen.dart';
+import 'showcase/fun_with_api/numbers/numbers_screen.dart';
+import 'showcase/fun_with_api/programming_memes/programming_memes_screen.dart';
+import 'showcase/fun_with_api/random_quote/random_quote_screen.dart';
+import 'showcase/fun_with_api/translate/translate_screen.dart';
+import 'showcase/fun_with_api/youtube_search/youtube_search_screen.dart';
+import 'showcase/other/test/test_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -31,6 +32,7 @@ class HomeScreen extends StatelessWidget {
             tabs: [
               Tab(icon: Icon(Icons.api), text: 'Fun With API'),
               Tab(icon: Icon(Icons.web_asset_sharp), text: 'WebGl'),
+              Tab(icon: Icon(Icons.backup_table), text: 'Other'),
             ],
           ),
         ),
@@ -38,6 +40,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             _buildFunWithApiContent(context),
             _buildWebglContent(context),
+            _buildOtherContent(context),
           ],
         ),
       ),
@@ -110,6 +113,27 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildOtherContent(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+        child: ListView(
+          children: [
+            _buildMenuButtons(
+              buttons: [
+                _buildMenuButton(
+                  context,
+                  buttonName: 'Test',
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildMenuHeader({
     required String name,
   }) {
@@ -171,6 +195,10 @@ class HomeScreen extends StatelessWidget {
       case 'Youtube Search':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => const YoutubeSearchScreen()));
+        break;
+      case 'Test':
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const TestScreen()));
         break;
     }
   }

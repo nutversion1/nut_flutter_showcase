@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nut_flutter_showcase/fun_with_api/youtube_search/youtube_search.dart';
 import 'package:text_link/text_link.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import 'youtube_search.dart';
 
 class YoutubeSearchDetailScreen extends StatelessWidget {
   final YoutubeSearch youtubeSearch;
