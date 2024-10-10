@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nut_flutter_showcase/showcase/fun_with_api/random_quote/cubits/quote_cubit.dart';
 
-import '../cubits/quote_states.dart';
+import '../../../../screen_states/screen_states.dart';
 import '../models/quote.dart';
 
 class RandomQuoteScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Random Quote')),
       body: BlocProvider(
-        create: (context) => QuoteCubit()..fetchRandomQuote(),
+        create: (_) => QuoteCubit()..fetchRandomQuote(),
         child: BlocBuilder<QuoteCubit, BaseState>(
           builder: (context, state) {
             if (state is BaseInitialState) {

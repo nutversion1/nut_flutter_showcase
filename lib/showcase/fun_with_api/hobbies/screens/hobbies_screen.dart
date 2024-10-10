@@ -3,8 +3,8 @@ import 'package:nut_flutter_showcase/main.dart';
 import 'package:nut_flutter_showcase/services/api_service.dart';
 import 'package:text_link/text_link.dart';
 
-import 'hobby_category.dart';
-import 'hobby.dart';
+import '../models/hobby_category.dart';
+import '../models/hobby.dart';
 
 class HobbiesScreen extends StatefulWidget {
   const HobbiesScreen({super.key});
@@ -133,7 +133,6 @@ class _HobbiesScreenState extends State<HobbiesScreen> {
 
     var url =
         'https://hobbies-by-api-ninjas.p.rapidapi.com/v1/hobbies?category=${_selectedCategory!.value}';
-
     var response = await apiService.dio.get(url);
 
     Map valueMap = response.data;

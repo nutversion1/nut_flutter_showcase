@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'showcase/fun_with_api/hobbies/hobbies_screen.dart';
+import 'showcase/fun_with_api/hobbies/screens/hobbies_screen.dart';
 import 'showcase/fun_with_api/numbers/numbers_screen.dart';
-import 'showcase/fun_with_api/programming_memes/programming_memes_screen.dart';
+import 'showcase/fun_with_api/programming_memes/screens/programming_memes_screen.dart';
 import 'showcase/fun_with_api/random_quote/screens/random_quote_screen.dart';
 import 'showcase/fun_with_api/translate/translate_screen.dart';
 import 'showcase/fun_with_api/youtube_search/youtube_search_screen.dart';

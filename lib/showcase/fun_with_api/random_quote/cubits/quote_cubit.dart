@@ -3,7 +3,7 @@ import 'package:nut_flutter_showcase/main.dart';
 import 'package:nut_flutter_showcase/services/api_service.dart';
 
 import '../models/quote.dart';
-import 'quote_states.dart';
+import '../../../../screen_states/screen_states.dart';
 
 class QuoteCubit extends Cubit<BaseState> {
   final apiService = locator<ApiService>();
