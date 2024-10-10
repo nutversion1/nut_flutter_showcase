@@ -19,17 +19,13 @@ class MemeCubit extends Cubit<BaseState> {
       if (response.statusCode == 200) {
         List valueMaps = response.data;
 
-        List<Meme> memes = [];
-
-        for (var valueMap in valueMaps) {
-          var image = valueMap['image'];
-          var created = valueMap['created'];
-          var modified = valueMap['modified'];
-
-          var meme = Meme(image: image, created: created, modified: modified);
-
-          memes.add(meme);
-        }
+        List<Meme> memes = valueMaps
+            .map<Meme>((valueMap) => Meme(
+                  image: valueMap['image'],
+                  created: valueMap['created'],
+                  modified: valueMap['modified'],
+                ))
+            .toList();
 
         emit(BaseCompletedState(data: memes));
       } else {
