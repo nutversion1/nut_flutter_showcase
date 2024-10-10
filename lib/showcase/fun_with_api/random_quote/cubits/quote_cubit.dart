@@ -1,26 +1,21 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dio/dio.dart';
+import 'package:nut_flutter_showcase/main.dart';
+import 'package:nut_flutter_showcase/services/api_service.dart';
 
 import '../models/quote.dart';
 import 'quote_states.dart';
 
 class QuoteCubit extends Cubit<BaseState> {
-  QuoteCubit() : super(const BaseInitialState());
+  final apiService = locator<ApiService>();
 
-  final dio = Dio(
-    BaseOptions(
-      headers: {
-        'X-RapidAPI-Key': 'd6c331a93dmsh50acb261fb544bbp104233jsnf173aa315856'
-      },
-    ),
-  );
+  QuoteCubit() : super(const BaseInitialState());
 
   Future<void> fetchRandomQuote() async {
     try {
       emit(const BaseLoadingState());
 
       var url = 'https://quotes15.p.rapidapi.com/quotes/random/';
-      var response = await dio.get(url);
+      var response = await apiService.dio.get(url);
 
       if (response.statusCode == 200) {
         Map valueMap = response.data;

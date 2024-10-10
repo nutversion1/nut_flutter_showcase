@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:nut_flutter_showcase/main.dart';
+import 'package:nut_flutter_showcase/services/api_service.dart';
 import 'package:text_link/text_link.dart';
-import 'dart:convert';
 
 import 'hobby_category.dart';
 import 'hobby.dart';
@@ -14,6 +14,8 @@ class HobbiesScreen extends StatefulWidget {
 }
 
 class _HobbiesScreenState extends State<HobbiesScreen> {
+  final apiService = locator<ApiService>();
+
   bool _isFetchingData = false;
   List<HobbyCategory> _categories = [];
   HobbyCategory? _selectedCategory;
@@ -131,16 +133,10 @@ class _HobbiesScreenState extends State<HobbiesScreen> {
 
     var url =
         'https://hobbies-by-api-ninjas.p.rapidapi.com/v1/hobbies?category=${_selectedCategory!.value}';
-    var headers = {
-      'X-RapidAPI-Key': 'd6c331a93dmsh50acb261fb544bbp104233jsnf173aa315856',
-    };
 
-    var response = await http.get(
-      Uri.parse(url),
-      headers: headers,
-    );
+    var response = await apiService.dio.get(url);
 
-    Map valueMap = json.decode(response.body);
+    Map valueMap = response.data;
     var hobby = valueMap['hobby'];
     var link = valueMap['link'];
     var category = valueMap['category'];

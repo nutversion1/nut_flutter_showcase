@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
+import 'services/api_service.dart';
 import 'home_screen.dart';
 
+final locator = GetIt.instance;
+
 void main() {
+  _setupLocator();
   runApp(const MyApp());
+}
+
+void _setupLocator() {
+  locator.registerSingleton<ApiService>(ApiService());
 }
 
 class MyApp extends StatelessWidget {
