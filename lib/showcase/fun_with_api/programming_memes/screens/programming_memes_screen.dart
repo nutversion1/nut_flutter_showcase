@@ -18,8 +18,8 @@ class _ProgrammingMemesScreenState extends State<ProgrammingMemesScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Programming Memes')),
       body: BlocProvider(
-        create: (_) => MemeCubit()..fetchMemes(),
-        child: BlocBuilder<MemeCubit, BaseState>(
+        create: (context) => MemeCubit()..fetchMemes(),
+        child: BlocConsumer<MemeCubit, BaseState>(
           builder: (context, state) {
             if (state is BaseInitialState) {
               return Container();
@@ -33,12 +33,13 @@ class _ProgrammingMemesScreenState extends State<ProgrammingMemesScreen> {
               return Container();
             }
           },
+          listener: (context, state) => {},
         ),
       ),
     );
   }
 
-  Widget _buildBody(context, List<Meme> memes) {
+  Widget _buildBody(BuildContext context, List<Meme> memes) {
     return Container(
       margin: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(

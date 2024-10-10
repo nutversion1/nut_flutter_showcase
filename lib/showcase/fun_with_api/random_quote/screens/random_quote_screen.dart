@@ -18,7 +18,7 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Random Quote')),
       body: BlocProvider(
-        create: (_) => QuoteCubit()..fetchRandomQuote(),
+        create: (context) => QuoteCubit()..fetchRandomQuote(),
         child: BlocBuilder<QuoteCubit, BaseState>(
           builder: (context, state) {
             if (state is BaseInitialState) {
@@ -47,9 +47,9 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _buildQuoteCard(context, quote),
+              _buildQuoteCard(quote),
               const SizedBox(height: 100),
-              _buildNextButton(context, quote),
+              _buildNextButton(context),
             ],
           ),
         ),
@@ -57,7 +57,7 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
     );
   }
 
-  Widget _buildNextButton(BuildContext context, Quote quote) {
+  Widget _buildNextButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
         context.read<QuoteCubit>().fetchRandomQuote();
@@ -66,7 +66,7 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
     );
   }
 
-  Widget _buildQuoteCard(context, Quote quote) {
+  Widget _buildQuoteCard(Quote quote) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),
