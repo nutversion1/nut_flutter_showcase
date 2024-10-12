@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nut_flutter_showcase/showcase/fun_with_api/random_quote/cubits/quote_cubit.dart';
 
-import '../../../../screen_states/screen_states.dart';
-import '../models/quote.dart';
+import 'package:nut_flutter_showcase/screen_states/screen_states.dart';
+import 'package:nut_flutter_showcase/showcase/fun_with_api/random_quote/models/quote.dart';
 
 class RandomQuoteScreen extends StatefulWidget {
   const RandomQuoteScreen({super.key});
@@ -21,17 +21,12 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
         create: (context) => QuoteCubit()..fetchRandomQuote(),
         child: BlocBuilder<QuoteCubit, BaseState>(
           builder: (context, state) {
-            if (state is BaseInitialState) {
-              return Container();
-            } else if (state is BaseLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is BaseCompletedState) {
-              return _buildBody(context, state.data);
-            } else if (state is BaseErrorState) {
-              return Center(child: Text(state.errorMessage.toString()));
-            } else {
-              return Container();
-            }
+            return switch (state) {
+              BaseInitialState() => Container(),
+              BaseLoadingState() => const Center(child: CircularProgressIndicator()),
+              BaseCompletedState() => _buildBody(context, state.data),
+              BaseErrorState() => Center(child: Text(state.errorMessage.toString())),
+            };
           },
         ),
       ),
@@ -80,8 +75,7 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
             const SizedBox(height: 20),
             Text(
               '-${quote.author}',
-              style:
-                  const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
           ],
         ),

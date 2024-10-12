@@ -21,17 +21,12 @@ class _ProgrammingMemesScreenState extends State<ProgrammingMemesScreen> {
         create: (context) => MemeCubit()..fetchMemes(),
         child: BlocConsumer<MemeCubit, BaseState>(
           builder: (context, state) {
-            if (state is BaseInitialState) {
-              return Container();
-            } else if (state is BaseLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is BaseCompletedState) {
-              return _buildBody(context, state.data);
-            } else if (state is BaseErrorState) {
-              return Center(child: Text(state.errorMessage.toString()));
-            } else {
-              return Container();
-            }
+            return switch (state) {
+              BaseInitialState() => Container(),
+              BaseLoadingState() => const Center(child: CircularProgressIndicator()),
+              BaseCompletedState() => _buildBody(context, state.data),
+              BaseErrorState() => Center(child: Text(state.errorMessage.toString())),
+            };
           },
           listener: (context, state) => {},
         ),
