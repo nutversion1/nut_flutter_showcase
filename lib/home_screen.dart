@@ -6,7 +6,8 @@ import 'showcase/fun_with_api/programming_memes/screens/programming_memes_screen
 import 'showcase/fun_with_api/random_quote/screens/random_quote_screen.dart';
 import 'showcase/fun_with_api/translate/translate_screen.dart';
 import 'showcase/fun_with_api/youtube_search/youtube_search_screen.dart';
-import 'showcase/other/test/test_screen.dart';
+import 'showcase/other/bloc_demo/screens/bloc_demo_screen.dart';
+import 'showcase/other/cubit_demo/screens/cubit_demo_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -124,7 +125,11 @@ class HomeScreen extends StatelessWidget {
               buttons: [
                 _buildMenuButton(
                   context,
-                  buttonName: 'Test',
+                  buttonName: 'Cubit Demo',
+                ),
+                _buildMenuButton(
+                  context,
+                  buttonName: 'Bloc Demo',
                 ),
               ],
             ),
@@ -173,32 +178,28 @@ class HomeScreen extends StatelessWidget {
   void _navigateToScreen(BuildContext context, String screenName) {
     switch (screenName) {
       case 'Random Quote':
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const RandomQuoteScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RandomQuoteScreen()));
         break;
       case 'Hobbies':
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const HobbiesScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HobbiesScreen()));
         break;
       case 'Numbers':
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const NumbersScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NumbersScreen()));
         break;
       case 'Translate':
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const TranslateScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TranslateScreen()));
         break;
       case 'Programming Memes':
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const ProgrammingMemesScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProgrammingMemesScreen()));
         break;
       case 'Youtube Search':
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const YoutubeSearchScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const YoutubeSearchScreen()));
         break;
-      case 'Test':
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const TestScreen()));
+      case 'Cubit Demo':
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TestScreen()));
+        break;
+      case 'Bloc Demo':
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const BlocDemoScreen()));
         break;
     }
   }

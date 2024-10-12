@@ -1,16 +1,16 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nut_flutter_showcase/showcase/other/bloc_demo/blocs/counter_bloc.dart';
 
-class TestScreen extends StatelessWidget {
-  const TestScreen({super.key});
+class BlocDemoScreen extends StatelessWidget {
+  const BlocDemoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Hobbies')),
+      appBar: AppBar(title: const Text('Bloc Demo')),
       body: BlocProvider(
-        create: (_) => CounterCubit(),
+        create: (_) => CounterBloc(),
         child: const MyWidget(),
       ),
     );
@@ -22,13 +22,13 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CounterCubit, int>(
+    return BlocBuilder<CounterBloc, int>(
       builder: (context, count) => _buildBody(context, count),
     );
   }
 
   Widget _buildBody(BuildContext context, int count) {
-    final counterCubit = BlocProvider.of<CounterCubit>(context);
+    final counterCubit = BlocProvider.of<CounterBloc>(context);
 
     return Center(
       child: Column(
@@ -43,11 +43,11 @@ class MyWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () => context.read<CounterCubit>().increment(),
+                onPressed: () => context.read<CounterBloc>().add(CounterIncrementPressed()),
                 child: const Icon(Icons.add),
               ),
               ElevatedButton(
-                onPressed: () => context.read<CounterCubit>().decrement(),
+                onPressed: () => context.read<CounterBloc>().add(CounterDecrementPressed()),
                 child: const Icon(Icons.remove),
               ),
             ],
@@ -56,11 +56,4 @@ class MyWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-class CounterCubit extends Cubit<int> {
-  CounterCubit() : super(0);
-
-  void increment() => emit(state + 1);
-  void decrement() => emit(state - 1);
 }
