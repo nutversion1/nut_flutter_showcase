@@ -28,8 +28,6 @@ class MyWidget extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context, int count) {
-    final counterCubit = BlocProvider.of<CounterBloc>(context);
-
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

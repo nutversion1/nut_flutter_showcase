@@ -39,168 +39,96 @@ class HomeScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            _buildFunWithApiContent(context),
-            _buildWebglContent(context),
-            _buildOtherContent(context),
+            MenuContent(buttons: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RandomQuoteScreen()));
+                },
+                child: const Text('Random Quote'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HobbiesScreen()));
+                },
+                child: const Text('Hobbies'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NumbersScreen()));
+                },
+                child: const Text('Numbers'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TranslateScreen()));
+                },
+                child: const Text('Translate'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProgrammingMemesScreen()));
+                },
+                child: const Text('Programming Memes'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const YoutubeSearchScreen()));
+                },
+                child: const Text('Youtube Search'),
+              ),
+            ]),
+            const MenuContent(buttons: [
+              ElevatedButton(
+                onPressed: null,
+                child: Text('AR'),
+              ),
+              ElevatedButton(
+                onPressed: null,
+                child: Text('Game'),
+              ),
+            ]),
+            MenuContent(buttons: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TestScreen()));
+                },
+                child: const Text('Cubit Demo'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const BlocDemoScreen()));
+                },
+                child: const Text('Bloc Demo'),
+              ),
+            ]),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _buildFunWithApiContent(BuildContext context) {
+class MenuContent extends StatelessWidget {
+  final List<Widget> buttons;
+
+  const MenuContent({super.key, required this.buttons});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
         child: ListView(
           children: [
-            _buildMenuButtons(
-              buttons: [
-                _buildMenuButton(
-                  context,
-                  buttonName: 'Random Quote',
-                ),
-                _buildMenuButton(
-                  context,
-                  buttonName: 'Hobbies',
-                ),
-                _buildMenuButton(
-                  context,
-                  buttonName: 'Numbers',
-                ),
-                _buildMenuButton(
-                  context,
-                  buttonName: 'Translate',
-                ),
-                _buildMenuButton(
-                  context,
-                  buttonName: 'Programming Memes',
-                ),
-                _buildMenuButton(
-                  context,
-                  buttonName: 'Youtube Search',
-                ),
-              ],
+            Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: buttons,
             ),
           ],
         ),
       ),
     );
-  }
-
-  Widget _buildWebglContent(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-        child: ListView(
-          children: [
-            _buildMenuButtons(
-              buttons: [
-                _buildMenuButton(
-                  context,
-                  buttonName: 'AR',
-                ),
-                _buildMenuButton(
-                  context,
-                  buttonName: 'Game',
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildOtherContent(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-        child: ListView(
-          children: [
-            _buildMenuButtons(
-              buttons: [
-                _buildMenuButton(
-                  context,
-                  buttonName: 'Cubit Demo',
-                ),
-                _buildMenuButton(
-                  context,
-                  buttonName: 'Bloc Demo',
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildMenuHeader({
-    required String name,
-  }) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Text(
-        name,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildMenuButtons({
-    required List<Widget> buttons,
-  }) {
-    return Wrap(
-      spacing: 10,
-      runSpacing: 10,
-      children: buttons,
-    );
-  }
-
-  Widget _buildMenuButton(
-    BuildContext context, {
-    required String buttonName,
-  }) {
-    return ElevatedButton(
-      onPressed: () {
-        _navigateToScreen(context, buttonName);
-      },
-      child: Text(buttonName),
-    );
-  }
-
-  void _navigateToScreen(BuildContext context, String screenName) {
-    switch (screenName) {
-      case 'Random Quote':
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RandomQuoteScreen()));
-        break;
-      case 'Hobbies':
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HobbiesScreen()));
-        break;
-      case 'Numbers':
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NumbersScreen()));
-        break;
-      case 'Translate':
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TranslateScreen()));
-        break;
-      case 'Programming Memes':
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProgrammingMemesScreen()));
-        break;
-      case 'Youtube Search':
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const YoutubeSearchScreen()));
-        break;
-      case 'Cubit Demo':
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TestScreen()));
-        break;
-      case 'Bloc Demo':
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const BlocDemoScreen()));
-        break;
-    }
   }
 }
