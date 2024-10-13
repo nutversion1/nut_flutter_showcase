@@ -8,6 +8,7 @@ import 'showcase/fun_with_api/translate/translate_screen.dart';
 import 'showcase/fun_with_api/youtube_search/youtube_search_screen.dart';
 import 'showcase/other/bloc_demo/screens/bloc_demo_screen.dart';
 import 'showcase/other/cubit_demo/screens/cubit_demo_screen.dart';
+import 'showcase/other/timer/view/timer_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -42,37 +43,43 @@ class HomeScreen extends StatelessWidget {
             TabView(buttons: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RandomQuoteScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const RandomQuoteScreen()));
                 },
                 child: const Text('Random Quote'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HobbiesScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HobbiesScreen()));
                 },
                 child: const Text('Hobbies'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NumbersScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const NumbersScreen()));
                 },
                 child: const Text('Numbers'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TranslateScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const TranslateScreen()));
                 },
                 child: const Text('Translate'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProgrammingMemesScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ProgrammingMemesScreen()));
                 },
                 child: const Text('Programming Memes'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const YoutubeSearchScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const YoutubeSearchScreen()));
                 },
                 child: const Text('Youtube Search'),
               ),
@@ -90,15 +97,24 @@ class HomeScreen extends StatelessWidget {
             TabView(buttons: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TestScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const TestScreen()));
                 },
                 child: const Text('Cubit Demo'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const BlocDemoScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const BlocDemoScreen()));
                 },
                 child: const Text('Bloc Demo'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const TimerPage()));
+                },
+                child: const Text('Timer'),
               ),
             ]),
           ],
