@@ -8,6 +8,7 @@ import 'showcase/fun_with_api/translate/translate_screen.dart';
 import 'showcase/fun_with_api/youtube_search/youtube_search_screen.dart';
 import 'showcase/other/bloc_demo/screens/bloc_demo_screen.dart';
 import 'showcase/other/cubit_demo/screens/cubit_demo_screen.dart';
+import 'showcase/other/posts/view/posts_page.dart';
 import 'showcase/other/timer/view/timer_page.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -115,6 +116,13 @@ class HomeScreen extends StatelessWidget {
                       builder: (context) => const TimerPage()));
                 },
                 child: const Text('Timer'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const PostsPage()));
+                },
+                child: const Text('Posts'),
               ),
             ]),
           ],
