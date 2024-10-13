@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            MenuContent(buttons: [
+            TabContent(buttons: [
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RandomQuoteScreen()));
@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                 child: const Text('Youtube Search'),
               ),
             ]),
-            const MenuContent(buttons: [
+            const TabContent(buttons: [
               ElevatedButton(
                 onPressed: null,
                 child: Text('AR'),
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                 child: Text('Game'),
               ),
             ]),
-            MenuContent(buttons: [
+            TabContent(buttons: [
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TestScreen()));
@@ -108,10 +108,10 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class MenuContent extends StatelessWidget {
+class TabContent extends StatelessWidget {
   final List<Widget> buttons;
 
-  const MenuContent({super.key, required this.buttons});
+  const TabContent({super.key, required this.buttons});
 
   @override
   Widget build(BuildContext context) {
